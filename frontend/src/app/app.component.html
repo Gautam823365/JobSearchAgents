@@ -1,0 +1,53 @@
+<div class="shell">
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">AI</span>
+      <div class="brand-text">
+        <span class="brand-title">Career Assistant</span>
+        <span class="brand-sub">Phase 01 — Chat Core</span>
+      </div>
+    </div>
+
+    <div class="pipeline">
+      <span class="pipeline-node">You</span>
+      <span class="pipeline-wire"></span>
+      <span class="pipeline-node active">Supervisor</span>
+      <span class="pipeline-wire"></span>
+      <span class="pipeline-node">Response</span>
+    </div>
+  </header>
+
+  <main class="thread" aria-live="polite">
+    <div
+      class="bubble-row"
+      *ngFor="let m of messages"
+      [class.from-user]="m.role === 'user'"
+    >
+      <span class="bubble-tag">{{ m.role === 'user' ? 'you' : 'assistant' }}</span>
+      <div class="bubble">{{ m.content }}</div>
+    </div>
+
+    <div class="bubble-row" *ngIf="isSending">
+      <span class="bubble-tag">assistant</span>
+      <div class="bubble typing">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <div #scrollAnchor></div>
+  </main>
+
+  <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+  <footer class="composer">
+    <textarea
+      [(ngModel)]="draft"
+      (keydown)="onKeydown($event)"
+      placeholder="Ask about jobs, resume matches, or applications…"
+      rows="1"
+    ></textarea>
+    <button (click)="send()" [disabled]="isSending || !draft.trim()">
+      Send
+    </button>
+  </footer>
+</div>

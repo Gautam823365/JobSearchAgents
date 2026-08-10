@@ -1,0 +1,37 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #10131a;
+  --panel: #181c25;
+  --panel-raised: #1f2430;
+  --line: #2a2f3c;
+  --text: #e8ebf1;
+  --text-muted: #838da0;
+  --cyan: #52d9c9;
+  --amber: #e3a84e;
+  --violet: #9b8cf2;
+
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  font-family: inherit;
+}
+
+::selection {
+  background: var(--cyan);
+  color: #0a0d12;
+}
